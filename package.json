@@ -1,0 +1,39 @@
+{
+  "name": "geobattle",
+  "version": "1.0.0",
+  "description": "This is a web project which aims to help with the planning and progress of GeoGuessr games.\r A variable number players are challenged on one or multiple games of GeoGuessr. One of the players is the organizer, tasked to create challenges and provide the challenge links on the GeoBattle platform for all the players to play. On geoguessr.com, the winner is determined by the total number of points scored. On this platform, flexible scoring methods are available in order to experiment and reward players differently.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjamincloquet/geobattle.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benjamincloquet/geobattle/issues"
+  },
+  "homepage": "https://github.com/benjamincloquet/geobattle#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.15",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
+    "path": "^0.12.7"
+  }
+}
