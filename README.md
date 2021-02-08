@@ -17,7 +17,7 @@ The proposed scoring formula for a given geobattle round is the following : SCOR
 ### Organizer
 When playing a classic challenge on GeoGuessr, one player picks a map, creates the challenge and shares a link with the others. Geobattle uses that same process.
 The organizer is a player who is in charge of creating the challenges on geoguessr.com and sharing them for everyone to play.
-Flow: 
+##### Flow 
 - The organizer is on the main page of the geobattle platform. They click on a button that says "Create a battle". They are taken to the battle creation page.
 - The battle creation page has text fields in which the organizer can enter the previously created challenge links. As many challenges as needed can be linked.
 - The battle creation page also allows the organizer to decide whether the battle will be played in teams or not.
@@ -26,7 +26,7 @@ Flow:
 
 ## Player
 A player is anyone who visits a geobattle link and participates in the game.
-Flow:
+##### Flow 
 - The player receives a link to a battle. Depending on whether they have played previously, either case a or b happens:
 - Case a: the player has never played before. They are redirected on a login page in order to login with Discord (OAuth). This process comes from the assumption that players generally chat on Discord while playing, allowing us to assume all players will already have a Discord account. Upon logging in, they are prompted to link their GeoGuessr account to their Discord login. This allows the platform to correctly track scores when the game is running. This idea comes from the fact that GeoGuessr doesn't allow third-party login with limited user info (yet). The only caveat with such a process is that anyone could link your GeoGuessr profile with their Discord login on the geobattle platform, though it wouldn't really make sense in the first place.
 - Case b: the player is logged in with Discord and has linked their GeoGuessr account. They are brought to the battle page, where they can find the link(s) to the challenge(s) and play.
