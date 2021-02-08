@@ -4,7 +4,10 @@
   "description": "This is a web project which aims to help with the planning and progress of GeoGuessr games.\r A variable number players are challenged on one or multiple games of GeoGuessr. One of the players is the organizer, tasked to create challenges and provide the challenge links on the GeoBattle platform for all the players to play. On geoguessr.com, the winner is determined by the total number of points scored. On this platform, flexible scoring methods are available in order to experiment and reward players differently.",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "start": "node index.js",
+    "client": "cd client && npm start",
+    "server": "nodemon index.js",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -30,6 +33,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "mongodb": "^3.6.3",
     "mongoose": "^5.11.15",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
