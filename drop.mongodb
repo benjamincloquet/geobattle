@@ -1,0 +1,3 @@
+use('Cluster0');
+
+db.sessions.drop();

@@ -4,6 +4,10 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   discordAccount: {
+    id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -12,7 +16,6 @@ const userSchema = new Schema({
   geoguessrAccount: {
     id: {
       type: String,
-      required: true,
     },
   },
 });
