@@ -8,15 +8,13 @@ const userSchema = new Schema({
       type: String,
       required: true,
     },
-    name: {
+    username: {
       type: String,
       required: true,
     },
   },
-  geoguessrAccount: {
-    id: {
-      type: String,
-    },
+  geoguessrAccountId: {
+    type: String,
   },
 });
 
