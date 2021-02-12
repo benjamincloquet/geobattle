@@ -24,7 +24,7 @@ The organizer is a player who is in charge of creating the challenges on geogues
 - When done, they are provided with a link to be shared with other players, which they can visit themselves.
 - The link directs everyone to the battle page. Aside from the challenge links, the organizer has visible options (eg. to manage teams) on the same page.
 
-## Player
+### Player
 A player is anyone who visits a GeoBattle link and participates in the game.
 ##### Flow 
 - The player receives a link to a battle. Depending on whether they have played previously, either case a or b happens:
@@ -37,3 +37,17 @@ GeoGuessr challenges are not designed to be played simultaneously between player
 The pros: this means we don't have to ensure everyone is completely synchronous! Rankings can be computed each time a player indicates they are done playing. Players can go in and out of a battle and complete challenges at their own pace.
 Realtime features can although be used in order to update the rankings without needing to refresh the page.
 The cons: since not everyone finishes each challenge at the same time, this means we need to tell the app to fetch the scores manually (eg. by having the players click a button that says "I am done playing"), or periodically (eg. every 5 minutes).
+
+
+## Features
+This is a personal list of features to keep track of the development.
+### Front end
+- Landing page
+- Nav bar with Login prompt
+- Dashboard with profile
+- GeoGuessr account linking page
+
+### Back end
+- User database with session storage
+- Login with discord
+- GeoGuessr account validation and linking
