@@ -1,25 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { useUser } from '../../userContext';
 
-const LinkedUserRoute = ({ path, component: Component, fallback: Fallback }) => {
+const LinkedUserRoute = ({ path, children }) => {
   const { user } = useUser();
 
-  const renderRoute = () => (
-    <Route
-      path={path}
-      render={() => (user.geoGuessrAccountId ? <Component /> : <Fallback />)}
-    />
-  );
+  const renderRoute = () => (user.geoGuessrAccountId ? { children } : <Redirect to="/dashboard/link" />);
 
-  return user ? renderRoute() : <p>Loading...</p>;
+  return (
+    <Route path={path}>
+      {user ? renderRoute() : <p>Loading ...</p>}
+    </Route>
+  );
 };
 
 LinkedUserRoute.propTypes = {
   path: PropTypes.string.isRequired,
-  component: PropTypes.elementType.isRequired,
-  fallback: PropTypes.elementType.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default LinkedUserRoute;

@@ -2,11 +2,6 @@
 
 .home {
   @include dark;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
 
   & .login {
     @include dark;

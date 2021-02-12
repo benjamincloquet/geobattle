@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { useUser } from '../../userContext';
 
-const UserRoute = ({ component: Component, fallback: Fallback }) => {
+const UserRoute = ({ path, children }) => {
   const { user } = useUser();
 
-  const renderRoute = () => (
-    <Route
-      render={() => (user.isLoggedIn ? <Component /> : <Fallback />)}
-    />
-  );
+  const renderRoute = () => (user.isLoggedIn ? children : <Redirect to="/login" />);
 
-  return user ? renderRoute() : <p>Loading...</p>;
+  return (
+    <Route path={path}>
+      {user ? renderRoute() : <p>Loading ...</p>}
+    </Route>
+  );
 };
 
 UserRoute.propTypes = {
-  component: PropTypes.elementType.isRequired,
-  fallback: PropTypes.elementType.isRequired,
+  path: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default UserRoute;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Login from '../login/Login';
 import Logout from '../login/Logout';
 import { useUser } from '../../userContext';
@@ -18,7 +19,7 @@ const Nav = () => {
 
   return (
     <nav>
-      <div className="left"><h1>GeoBattle</h1></div>
+      <div className="left"><Link to="/"><h1>GeoBattle</h1></Link></div>
       <div className="right">
         {user ? renderUser() : <p className="loader">Loading...</p>}
       </div>

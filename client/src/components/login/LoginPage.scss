@@ -1,0 +1,8 @@
+@import '../colors.scss';
+
+.login-page {
+
+  & .login {
+    @include dark;
+  }
+}
