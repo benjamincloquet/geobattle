@@ -1,0 +1,12 @@
+$dark: #4c4a47;
+$light: #ffffff;
+
+@mixin dark {
+  color: $dark;
+  border-color: $dark;
+}
+
+@mixin light {
+  color: $light;
+  border-color: $light;
+}

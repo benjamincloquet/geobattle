@@ -1,0 +1,25 @@
+@import '../colors.scss';
+
+nav {
+  background-color: $dark;
+  display: flex;
+  color: $light;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  & h1 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  & .user {
+    display: flex;
+    align-items: center;
+    
+    &__username {
+      font-weight: 400;
+      margin-right: 2rem;
+    }
+  }
+}

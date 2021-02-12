@@ -1,0 +1,10 @@
+@import '../colors.scss';
+
+.login {
+  border: 2px solid $light;
+  border-radius: 0.5rem;
+  color: $light;
+  padding: 1rem;
+  text-decoration: none;
+  display: block;
+}

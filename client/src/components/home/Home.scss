@@ -1,0 +1,19 @@
+@import '../colors.scss';
+
+.home {
+  @include dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+  & .login {
+    @include dark;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+}

@@ -1,12 +1,22 @@
-import React, { useContext } from 'react';
-import useUser from '../useUser';
-import { UserContext } from '../userContext';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+import Nav from './nav/Nav';
+import Home from './home/Home';
+import useFetchUser from '../useFetchUser';
+import './App.css';
 
 const App = () => {
-  const { user } = useContext(UserContext);
-  useUser();
+  useFetchUser();
 
-  return <div>{user?.loggedIn ? 'Logged in!' : 'Not logged in'}</div>;
+  return (
+    <Router>
+      <Nav />
+      <Route exact path="/" component={Home} />
+    </Router>
+  );
 };
 
 export default App;
