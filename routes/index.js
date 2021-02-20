@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
 require('./login').config(router);
-require('./link').config(router);
+require('./battle').config(router);
 
 module.exports = router;

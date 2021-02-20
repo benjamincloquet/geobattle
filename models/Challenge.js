@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const battleSchema = new Schema({
-  profileId: {
+const challengeSchema = new Schema({
+  battleId: {
     type: String,
     required: true,
   },
-  name: {
+  token: {
     type: String,
     required: true,
   },
 });
 
-battleSchema.set('toJSON', {
+challengeSchema.set('toJSON', {
   virtuals: true,
 });
 
-module.exports = mongoose.model('Battles', battleSchema, 'battles');
+module.exports = mongoose.model('Challenges', challengeSchema, 'challenges');
