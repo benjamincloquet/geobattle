@@ -5,8 +5,6 @@ const path = require('path');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const { connectToDatabase, isConnectedToDatabase } = require('./services/database');
-const passport = require('./services/passport');
-const session = require('./services/session');
 const routes = require('./routes');
 
 const start = async () => {
@@ -32,8 +30,8 @@ const start = async () => {
   }
 
   app.use(isConnectedToDatabase);
-  session.configure(app);
-  passport.configure(app);
+  // session.configure(app);
+  // passport.configure(app);
   app.use('/api', routes);
 
   app.listen(process.env.PORT, () => {
