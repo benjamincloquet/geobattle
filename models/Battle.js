@@ -11,6 +11,7 @@ const battleSchema = new Schema({
     type: String,
     required: true,
   },
+  players: [String],
 });
 
 battleSchema.set('toJSON', {

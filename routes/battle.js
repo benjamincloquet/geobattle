@@ -1,5 +1,5 @@
 const {
-  createBattle, getBattles, createChallenge, getBattle, getChallenges,
+  createBattle, getBattles, createChallenge, getBattle, getChallenges, joinBattle, hasPlayerJoinedChallenge, addResult,
 } = require('../services/battle');
 
 exports.config = (router) => {
@@ -20,7 +20,7 @@ exports.config = (router) => {
       res.status(200).json({ battles });
     } catch (error) {
       console.log(error);
-      res.status(503).json({ error: "Couldn't create battle" });
+      res.status(503).json({ error: "Couldn't get battle" });
     }
   });
 
@@ -30,7 +30,7 @@ exports.config = (router) => {
       const challenge = await createChallenge({ profile, params });
       res.status(200).json({ challenge });
     } catch (error) {
-      res.status(503).json({ error: "Couldn't create battle" });
+      res.status(503).json({ error: "Couldn't create challenge" });
     }
   });
 
@@ -42,7 +42,7 @@ exports.config = (router) => {
       res.status(200).json({ battle, challenges });
     } catch (error) {
       console.log(error);
-      res.status(503).json({ error: "Couldn't create battle" });
+      res.status(503).json({ error: "Couldn't get battle" });
     }
   });
 
@@ -53,7 +53,42 @@ exports.config = (router) => {
       res.status(200).json({ challenges });
     } catch (error) {
       console.log(error);
-      res.status(503).json({ error: "Couldn't create battle" });
+      res.status(503).json({ error: "Couldn't get challenges" });
+    }
+  });
+
+  router.post('/join', async (req, res) => {
+    try {
+      const { profile, params } = req.body;
+      const battle = await joinBattle({ profile, params });
+      res.status(200).json({ battle });
+    } catch (error) {
+      res.status(503).json({ error: "Couldn't join battle" });
+    }
+  });
+
+  router.post('/joined', async (req, res) => {
+    try {
+      const { profileId, token } = req.body;
+      if (await hasPlayerJoinedChallenge({ profileId, token })) {
+        res.status(200).json({});
+      } else {
+        res.status(401).json({ error: 'Must join a battle before playing the challenge' });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(503).json({ error: "Couldn't get challenges" });
+    }
+  });
+
+  router.post('/result', async (req, res) => {
+    try {
+      const { result, token } = req.body;
+      const battle = await addResult({ result, token });
+      res.status(200).json({ battle });
+    } catch (error) {
+      console.log(error);
+      res.status(503).json({ error: "Couldn't join battle" });
     }
   });
 };

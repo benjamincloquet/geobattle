@@ -11,6 +11,25 @@ const challengeSchema = new Schema({
     type: String,
     required: true,
   },
+  players: {
+    type: [{
+      profileId: {
+        type: String,
+        required: true,
+      },
+      nick: {
+        type: String,
+        required: true,
+      },
+      guesses: [{
+        roundScoreInPoints: {
+          type: Number,
+          required: true,
+        },
+      }],
+    }],
+    default: [],
+  },
 });
 
 challengeSchema.set('toJSON', {
