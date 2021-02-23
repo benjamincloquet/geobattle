@@ -11,6 +11,12 @@ const challengeSchema = new Schema({
     type: String,
     required: true,
   },
+  map: {
+    name: {
+      type: String,
+      default: '',
+    },
+  },
   players: {
     type: [{
       profileId: {

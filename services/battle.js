@@ -5,7 +5,7 @@ exports.createBattle = async ({ profile: { id }, params: { battleName } }) => Ba
 
 exports.getBattles = async ({ profileId }) => Battle.find({ $or: [{ profileId }, { players: profileId }] }).select('id name');
 
-exports.createChallenge = async ({ params: { battleId, token } }) => Challenge.create({ battleId, token });
+exports.createChallenge = async ({ params: { battleId, token, map } }) => Challenge.create({ battleId, token, map });
 
 exports.getBattle = async ({ battleId }) => Battle.findById(battleId);
 
@@ -44,4 +44,9 @@ exports.addResult = async ({ result, token }) => {
     challenge.players.push(player);
   }
   return challenge.save();
+};
+
+exports.challengeExists = async ({ battleId, token }) => {
+  const challenges = await exports.getChallenges({ battleId });
+  return challenges.find((challenge) => challenge.token === token);
 };

@@ -1,5 +1,5 @@
 const {
-  createBattle, getBattles, createChallenge, getBattle, getChallenges, joinBattle, hasPlayerJoinedChallenge, addResult,
+  createBattle, getBattles, createChallenge, getBattle, getChallenges, joinBattle, hasPlayerJoinedChallenge, addResult, challengeExists,
 } = require('../services/battle');
 
 exports.config = (router) => {
@@ -27,8 +27,12 @@ exports.config = (router) => {
   router.post('/challenge', async (req, res) => {
     try {
       const { profile, params } = req.body;
-      const challenge = await createChallenge({ profile, params });
-      res.status(200).json({ challenge });
+      if (await challengeExists(params)) {
+        res.status(401).json({ error: 'Duplicate challenge' });
+      } else {
+        const challenge = await createChallenge({ profile, params });
+        res.status(200).json({ challenge });
+      }
     } catch (error) {
       res.status(503).json({ error: "Couldn't create challenge" });
     }
