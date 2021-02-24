@@ -18,8 +18,8 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "CLIENT_ENV=development craco start",
+    "build": "CLIENT_ENV=production craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
