@@ -7,19 +7,22 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
+    "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
     "http-proxy-middleware": "^1.0.6",
+    "postcss": "^7.0.35",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-form": "^4.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "CLIENT_ENV=development craco start",
-    "build": "CLIENT_ENV=production craco build",
+    "start": "craco start",
+    "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -42,16 +45,12 @@
     ]
   },
   "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.3",
-    "autoprefixer": "^9.8.6",
     "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "node-sass": "^5.0.0",
-    "postcss": "^7.0.35",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "node-sass": "^5.0.0"
   }
 }
