@@ -88,6 +88,7 @@ exports.config = (router) => {
   router.post('/result', async (req, res) => {
     try {
       const { player, token } = req.body;
+      console.log(req.body);
       const battle = await addResult({ player, token });
       res.status(200).json({ battle });
     } catch (error) {
