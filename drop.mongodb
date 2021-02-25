@@ -1,3 +1,4 @@
 use('Cluster0');
 
-db.sessions.drop();
+db.battles.drop();
+db.challenges.drop();

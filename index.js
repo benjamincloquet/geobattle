@@ -23,6 +23,8 @@ const start = async () => {
     app.use(morgan('dev'));
   }
 
+  console.log(`Starting the server in ${process.env.NODE_ENV} mode`);
+
   try {
     await connectToDatabase();
   } catch (err) {
