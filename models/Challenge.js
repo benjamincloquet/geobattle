@@ -42,7 +42,6 @@ const challengeSchema = new Schema({
         },
       }],
     }],
-    default: [],
   },
 });
 

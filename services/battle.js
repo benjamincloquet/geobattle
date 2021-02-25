@@ -31,19 +31,15 @@ exports.hasPlayerJoinedChallenge = async ({ profileId, token }) => {
   return challenges.find((challenge) => challenge.token === token);
 };
 
-exports.addResult = async ({ result, token }) => {
+exports.addResult = async ({ player, token }) => {
   const challenge = await Challenge.findOne({ token });
-  const player = {
-    ...result.player,
-    profileId: result.player.id,
-  };
-  const playerIndex = challenge.players.findIndex((existingPlayer) => existingPlayer.profileId === result.player.id);
+  const playerIndex = challenge.players.findIndex((existingPlayer) => existingPlayer.profileId === player.profileId);
   if (playerIndex !== -1) {
     challenge.players[playerIndex] = player;
   } else {
     challenge.players.push(player);
   }
-  challenge.players = updatePlayerRanks(challenge.toObject());
+  challenge.players = [...updatePlayerRanks(challenge.toObject())];
   return challenge.save();
 };
 
