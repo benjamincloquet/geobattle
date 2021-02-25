@@ -13,7 +13,7 @@ const start = async () => {
   app.options('*', cors());
   app.use(bodyParser.json());
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
     app.use(morgan('dev'));
   }

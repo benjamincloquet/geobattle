@@ -1,5 +1,6 @@
 const Battle = require('../models/Battle');
 const Challenge = require('../models/Challenge');
+const { updatePlayerRanks } = require('./ranking');
 
 exports.createBattle = async ({ profile: { id }, params: { battleName } }) => Battle.create({ profileId: id, name: battleName });
 
@@ -32,7 +33,6 @@ exports.hasPlayerJoinedChallenge = async ({ profileId, token }) => {
 
 exports.addResult = async ({ result, token }) => {
   const challenge = await Challenge.findOne({ token });
-  console.log(challenge);
   const player = {
     ...result.player,
     profileId: result.player.id,
@@ -43,6 +43,7 @@ exports.addResult = async ({ result, token }) => {
   } else {
     challenge.players.push(player);
   }
+  challenge.players = updatePlayerRanks(challenge.toObject());
   return challenge.save();
 };
 

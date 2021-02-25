@@ -11,6 +11,10 @@ const challengeSchema = new Schema({
     type: String,
     required: true,
   },
+  roundCount: {
+    type: Number,
+    default: 5,
+  },
   map: {
     name: {
       type: String,
@@ -31,6 +35,10 @@ const challengeSchema = new Schema({
         roundScoreInPoints: {
           type: Number,
           required: true,
+        },
+        rank: {
+          type: Number,
+          default: 0,
         },
       }],
     }],

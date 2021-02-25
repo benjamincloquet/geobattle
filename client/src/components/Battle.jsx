@@ -20,6 +20,7 @@ const Battle = () => {
       {player.guesses.map((guess) => (
         <td className="py-3 px-6 text-left">
           {`${guess.roundScoreInPoints} points`}
+          <span className={`${guess.rank === 1 ? 'bg-yellow-400' : 'bg-gray-900'} text-white px-1.5 ml-2 rounded-full text-sm`}>{guess.rank}</span>
         </td>
       ))}
     </tr>
