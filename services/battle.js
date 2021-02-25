@@ -39,7 +39,8 @@ exports.addResult = async ({ player, token }) => {
   } else {
     challenge.players.push(player);
   }
-  challenge.players = [...updatePlayerRanks(challenge.toObject())];
+  const updatedPlayers = updatePlayerRanks(challenge.toObject());
+  challenge.players = [...updatedPlayers];
   return challenge.save();
 };
 
