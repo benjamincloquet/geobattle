@@ -13,12 +13,7 @@ const start = async () => {
   app.options('*', cors());
   app.use(bodyParser.json());
 
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, './client/build')));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, './client/build/index.html'));
-    });
-  } else {
+  if (process.env.NODE_ENV === 'development') {
     dotenv.config();
     app.use(morgan('dev'));
   }
@@ -32,9 +27,14 @@ const start = async () => {
   }
 
   app.use(isConnectedToDatabase);
-  // session.configure(app);
-  // passport.configure(app);
   app.use('/api', routes);
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, './client/build')));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, './client/build/index.html'));
+    });
+  }
 
   app.listen(process.env.PORT, () => {
     console.log(`Server started in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`);
