@@ -2,3 +2,5 @@ use('Cluster0');
 
 db.battles.drop();
 db.challenges.drop();
+db.players.drop();
+db.results.drop();

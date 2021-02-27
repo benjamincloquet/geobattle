@@ -16,5 +16,7 @@ export default (battleId) => {
     await fetchBattle();
   }, []);
 
-  return { battle, challenges, refresh: fetchBattle };
+  return {
+    battle, challenges, refresh: fetchBattle,
+  };
 };

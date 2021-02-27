@@ -1,0 +1,47 @@
+use('Cluster0');
+
+db.results.drop();
+
+db.results.insertMany([
+{
+  "_id": 1,
+  "challengeToken": "VvA7WCMswAFQ6sUX",
+  "player": {
+    "profileId": "profile1",
+    "nick": "ROTI",
+    "avatarUrl": "pin/fab0d62b01167ccd6cf59c4e9c984805.png"
+  },
+  "guesses": [{"roundScoreInPoints": 4866}, {"roundScoreInPoints": 2}],
+},
+{
+  "_id": 2,
+  "challengeToken": "VvA7WCMswAFQ6sUX",
+  "player": {
+    "profileId": "profile2",
+    "nick": "ROTI2",
+    "avatarUrl": "pin/fab0d62b01167ccd6cf59c4e9c984805.png"
+  },
+  "guesses": [{"roundScoreInPoints": 4000}, {"roundScoreInPoints": 5000}],
+},
+{
+  "_id": 3,
+  "challengeToken": "VvA7WCMswAFQ6sUX",
+  "player": {
+    "profileId": "profile3",
+    "nick": "ROTI3",
+    "avatarUrl": "pin/fab0d62b01167ccd6cf59c4e9c984805.png"
+  },
+  "guesses": [{"roundScoreInPoints": 1500}, {"roundScoreInPoints": 5000}],
+},
+
+{
+  "_id": 4,
+  "challengeToken": "VvA7WCMswAFQ6sUX",
+  "player": {
+    "profileId": "profile4",
+    "nick": "ROTI4",
+    "avatarUrl": "pin/fab0d62b01167ccd6cf59c4e9c984805.png"
+  },
+  "guesses": [{"roundScoreInPoints": 3500}, {"roundScoreInPoints": 4500}, {"roundScoreInPoints": 4000}, {"roundScoreInPoints": 4000}, {"roundScoreInPoints": 4000}],
+},
+]);

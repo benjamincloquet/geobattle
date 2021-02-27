@@ -3,10 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const challengeSchema = new Schema({
-  battleId: {
-    type: String,
-    required: true,
-  },
+  battleId: { type: Schema.Types.ObjectId, ref: 'Battle' },
   token: {
     type: String,
     required: true,
@@ -20,28 +17,6 @@ const challengeSchema = new Schema({
       type: String,
       default: '',
     },
-  },
-  players: {
-    type: [{
-      profileId: {
-        type: String,
-        required: true,
-      },
-      nick: {
-        type: String,
-        required: true,
-      },
-      guesses: [{
-        roundScoreInPoints: {
-          type: Number,
-          required: true,
-        },
-        rank: {
-          type: Number,
-          default: 0,
-        },
-      }],
-    }],
   },
 });
 

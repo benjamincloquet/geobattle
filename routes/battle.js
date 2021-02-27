@@ -1,5 +1,5 @@
 const {
-  createBattle, getBattles, createChallenge, getBattle, getChallenges, joinBattle, hasPlayerJoinedChallenge, addResult, challengeExists,
+  createBattle, getBattles, createChallenge, getBattle, getChallenges, joinBattle, hasPlayerJoinedChallenge, addResult, challengeExists, getResults,
 } = require('../services/battle');
 
 exports.config = (router) => {
@@ -87,12 +87,23 @@ exports.config = (router) => {
 
   router.post('/result', async (req, res) => {
     try {
-      const { player, token } = req.body;
-      const battle = await addResult({ player, token });
+      const { result } = req.body;
+      const battle = await addResult({ newResult: result });
       res.status(200).json({ battle });
     } catch (error) {
       console.log(error);
       res.status(503).json({ error: "Couldn't join battle" });
+    }
+  });
+
+  router.get('/results', async (req, res) => {
+    try {
+      const { challengeToken } = req.query;
+      const results = await getResults({ challengeToken });
+      res.status(200).json({ results });
+    } catch (error) {
+      console.log(error);
+      res.status(503).json({ error: "Couldn't get results" });
     }
   });
 };

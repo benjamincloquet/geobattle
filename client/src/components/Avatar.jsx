@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useAvatar from '../useAvatar';
 
-const Avatar = ({ className, profileId }) => {
-  const avatar = useAvatar(profileId);
-
-  return <img className={className} src={avatar} alt="avatar" />;
-};
+const Avatar = ({ className, avatarUrl }) => <img className={className} src={`https://www.geoguessr.com/images/auto/144/144/ce/0/plain/${avatarUrl}`} alt="avatar" />;
 
 Avatar.propTypes = {
   className: PropTypes.string,
-  profileId: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
 };
 
 Avatar.defaultProps = {

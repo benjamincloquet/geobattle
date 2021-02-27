@@ -15,8 +15,10 @@ exports.updatePlayerRanks = (challenge) => {
     const roundScoreRanks = roundScores.slice().sort(comparePlayerScores).reduceRight(rankReducer, {});
     challengeScoreRanks.push(roundScoreRanks);
   }
-  return challenge.players.map((player) => ({
-    ...player,
-    guesses: player.guesses.map((guess, roundIndex) => ({ ...guess, rank: challengeScoreRanks[roundIndex][guess.roundScoreInPoints] })),
-  }));
+  for (player of challenge.players) {
+    for (let roundIndex = 0; roundIndex < player.guesses.length; roundIndex += 1) {
+      const guess = player.guesses[roundIndex];
+      guess.rank = challengeScoreRanks[roundIndex][guess.roundScoreInPoints];
+    }
+  }
 };

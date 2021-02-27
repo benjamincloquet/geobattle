@@ -1,18 +1,18 @@
 const Battle = require('../models/Battle');
 const Challenge = require('../models/Challenge');
-const { updatePlayerRanks } = require('./ranking');
+const Result = require('../models/Result');
 
-exports.createBattle = async ({ profile: { id }, params: { battleName } }) => Battle.create({ profileId: id, name: battleName });
+const createBattle = async ({ profile: { id }, params: { battleName } }) => Battle.create({ profileId: id, name: battleName });
 
-exports.getBattles = async ({ profileId }) => Battle.find({ $or: [{ profileId }, { players: profileId }] }).select('id name');
+const getBattles = async ({ profileId }) => Battle.find({ $or: [{ profileId }, { players: profileId }] }).select('id name');
 
-exports.createChallenge = async ({ params: { battleId, token, map } }) => Challenge.create({ battleId, token, map });
+const createChallenge = async ({ params: { battleId, token, map } }) => Challenge.create({ battleId, token, map });
 
-exports.getBattle = async ({ battleId }) => Battle.findById(battleId);
+const getBattle = async ({ battleId }) => Battle.findById(battleId);
 
-exports.getChallenges = async ({ battleId }) => Challenge.find({ battleId });
+const getChallenges = async ({ battleId }) => Challenge.find({ battleId });
 
-exports.joinBattle = async ({ profile: { id }, params: { battleId } }) => {
+const joinBattle = async ({ profile: { id }, params: { battleId } }) => {
   const battle = await Battle.findById(battleId);
   if (battle.profileId !== id && !battle.players.includes(id)) {
     battle.players.push(id);
@@ -21,30 +21,60 @@ exports.joinBattle = async ({ profile: { id }, params: { battleId } }) => {
   return battle;
 };
 
-exports.getPlayerChallenges = async ({ profileId }) => {
-  const battleIds = (await exports.getBattles({ profileId })).map(({ id }) => id);
+const getPlayerChallenges = async ({ profileId }) => {
+  const battleIds = (await getBattles({ profileId })).map(({ id }) => id);
   return Challenge.find({ battleId: { $in: battleIds } });
 };
 
-exports.hasPlayerJoinedChallenge = async ({ profileId, token }) => {
-  const challenges = await exports.getPlayerChallenges({ profileId });
+const hasPlayerJoinedChallenge = async ({ profileId, token }) => {
+  const challenges = await getPlayerChallenges({ profileId });
   return challenges.find((challenge) => challenge.token === token);
 };
 
-exports.addResult = async ({ player, token }) => {
-  const challenge = await Challenge.findOne({ token });
-  const playerIndex = challenge.players.findIndex((existingPlayer) => existingPlayer.profileId === player.profileId);
-  if (playerIndex !== -1) {
-    challenge.players[playerIndex] = player;
+const createResult = async (result) => Result.create(result);
+
+const getResult = async ({ result }) => {
+  const { challengeToken, player: { profileId } } = result;
+  const existingResult = await Result.findOne({ 'player.profileId': profileId, challengeToken });
+  return existingResult;
+};
+
+const getLastGuess = ({ result: { guesses } }) => {
+  const { roundScoreInPoints } = guesses.pop();
+  return {
+    roundScoreInPoints,
+  };
+};
+
+const addResult = async ({ newResult }) => {
+  const result = await getResult({ result: newResult });
+  if (result) {
+    const lastGuess = getLastGuess({ result: newResult });
+    result.guesses.push(lastGuess);
+    result.save();
   } else {
-    challenge.players.push(player);
+    await createResult(newResult);
   }
-  const updatedPlayers = updatePlayerRanks(challenge.toObject());
-  challenge.players = [...updatedPlayers];
-  return challenge.save();
 };
 
-exports.challengeExists = async ({ battleId, token }) => {
-  const challenges = await exports.getChallenges({ battleId });
+const challengeExists = async ({ battleId, token }) => {
+  const challenges = await getChallenges({ battleId });
   return challenges.find((challenge) => challenge.token === token);
+};
+
+const getResults = async ({ challengeToken }) => Result.find({ challengeToken });
+
+module.exports = {
+  createBattle,
+  getBattles,
+  createChallenge,
+  getBattle,
+  getChallenges,
+  joinBattle,
+  getPlayerChallenges,
+  hasPlayerJoinedChallenge,
+  getResult,
+  addResult,
+  challengeExists,
+  getResults,
 };
