@@ -8,10 +8,8 @@ const Challenge = ({ challenge }) => {
 
   const getRankColor = (rank) => {
     switch (rank) {
-      case 1: return 'bg-yellow-400';
-      case 2: return 'bg-gray-400';
-      case 3: return 'bg-yellow-600';
-      default: return 'bg-gray-900';
+      case 1: return 'border-yellow-400 text-yellow-400';
+      default: return 'border-gray-400 text-gray-400';
     }
   };
 
@@ -23,8 +21,8 @@ const Challenge = ({ challenge }) => {
       <td className="py-3 px-1">
         {guess ? (
           <div className="flex justify-between">
-            <p>{`${guess.roundScoreInPoints} points`}</p>
-            <span className={`${rankColor} text-white px-1.5 mr-10 rounded-full text-sm self-center`}>{rank}</span>
+            <p className="">{`${guess.roundScoreInPoints} pts`}</p>
+            <div className={`${rankColor} font-medium border-2 w-5 h-5 mr-10 rounded-full text-xs self-center flex justify-center items-center `}><p className="text-center">{rank}</p></div>
           </div>
         ) : null}
       </td>
@@ -51,7 +49,7 @@ const Challenge = ({ challenge }) => {
       </td>
       {result.guesses.map(renderRoundScore(result.player.profileId))}
       {renderEmptyCells(challenge.roundCount - result.guesses.length)}
-      <td className="py-3 px-6 text-center">
+      <td className="py-3 px-6 text-center font-medium text-lg">
         {ranking?.[result.player.profileId].score ?? 0}
       </td>
     </tr>
